@@ -8,8 +8,10 @@ function App() {
   const [count, setCount] = useState(0);
 
   const [data, setData] = useState(null);
+  const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [errorUsers, setErrorUsers] = useState(null);
 
   const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -25,13 +27,25 @@ function App() {
       }
     };
 
+    const fetchDataUsers = async () => {
+      try {
+        const responseUsers = await axios.get(`${baseUrl}/users`); // Replace with your API URL
+        setUsers(responseUsers.data.slice(0, 10)); // Limit to first 10 items for brevity
+      } catch (err) {
+        setErrorUsers(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchData();
+    fetchDataUsers();
   }, []); // Empty dependency array ensures it runs only once on mount
 
   return (
     <>
       <div>
-        <h2>App1 updated test</h2>
+        <h2>App1</h2>
         {data ? (
           <ul>
             {data.map((item) => (
@@ -42,6 +56,21 @@ function App() {
           <p>Loading...</p>
         ) : error ? (
           <p>Error: {error.message}</p>
+        ) : null}
+
+        <h2>Liste des utilisateurs</h2>
+        <h5>{`${baseUrl}/users`}</h5>
+        {users ? (
+          <>
+            <p>Total : {users?.length}</p>
+            {users.map((item) => (
+              <p key={item.id}>{item.name}</p>
+            ))}
+          </>
+        ) : loading ? (
+          <p>Loading...</p>
+        ) : errorUsers ? (
+          <p>Error: {errorUsers.message}</p>
         ) : null}
       </div>
       <div>
