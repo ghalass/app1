@@ -7,10 +7,11 @@ echo "Deployment started ..."
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# Reset and update code
+# Reset and update code, remove untracked files
 echo "Fetching latest code..."
 git fetch origin main
 git reset --hard origin/main
+git clean -fd
 echo "Code updated from remote!"
 
 # Installing Dependencies
@@ -25,7 +26,7 @@ export VITE_NODE_ENV="production"
 echo "Building application..."
 npm run build
 
-# Copying dist to /var/www/[project name]
+# Copying dist to /var/www/app1
 echo "Copying dist to /var/www/app1"
 sudo rm -rf /var/www/app1/*
 sudo cp -r dist/* /var/www/app1
