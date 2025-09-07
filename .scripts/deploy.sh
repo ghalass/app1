@@ -8,8 +8,9 @@ echo "Deployment started ..."
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# Pull the latest version of the app
-git pull origin main # Your branch name
+# Reset any local changes and pull latest
+git fetch origin main
+git reset --hard origin/main
 echo "New changes copied to server !"
 
 # Installing Dependencies
