@@ -14,7 +14,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      VITE_BASE_URL: "https://jsonplaceholder.typicode.com/todos"
+      VITE_BASE_URL: "https://api1.ghalass.com"
       VITE_NODE_ENV: "production"
     steps:
       - uses: actions/checkout@v3
