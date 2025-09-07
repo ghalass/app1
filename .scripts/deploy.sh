@@ -13,7 +13,7 @@ git pull origin main # Your branch name
 echo "New changes copied to server !"
 
 # Installing Dependencies
-echo "Installing Dependencies..."
+echo "Installing Dependencies..." 
 npm install --yes
 
 # Creating a build with env variables
