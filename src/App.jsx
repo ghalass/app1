@@ -31,7 +31,7 @@ function App() {
   return (
     <>
       <div>
-        <h2>App1 updated</h2>
+        <h2>App1 updated test</h2>
         {data ? (
           <ul>
             {data.map((item) => (
