@@ -1,0 +1,12 @@
+# docker-compose.yml
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ghalass-container-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - .app1.conf:/etc/nginx/conf.d/app1.conf:ro
