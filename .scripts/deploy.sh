@@ -16,8 +16,12 @@ echo "New changes copied to server !"
 echo "Installing Dependencies..."
 npm install --yes
 
-# Creating a build 
-echo "Building application"
+# Creating a build with env variables
+echo "Setting environment variables..."
+export VITE_BASE_URL="https://jsonplaceholder.typicode.com/todos"
+export VITE_NODE_ENV="production"
+
+echo "Building application..."
 npm run build
 
 # Copying dist to /var/www/[project name]
